@@ -1,136 +1,1318 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fahad Al-Amoudi | Data Science</title>
+  <title>فهد العمودي | متخصص علم البيانات</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts: Inter -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <!-- Google Fonts: Cairo for Arabic -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
   <style>
-    body { font-family: 'Inter', sans-serif; overflow: hidden; }
-
-    /* Typing effect */
-    .typing { border-right: .15em solid #a3a3a3; white-space: nowrap; overflow: hidden; }
-
-    /* Glow effect */
-    .glow-text { text-shadow: 0 0 8px #a3a3a3, 0 0 16px #a3a3a3; }
-
-    /* Neon container glow */
-    .neon-container { box-shadow: 0 0 20px rgba(163, 163, 163, 0.6), 0 0 40px rgba(163, 163, 163, 0.4); }
-
-    /* Floating particles */
-    .particle {
-      position: absolute;
-      background: rgba(163,163,163,0.5);
-      border-radius: 50%;
-      pointer-events: none;
-      animation: float 10s linear infinite;
+    * {
+      font-family: 'Cairo', sans-serif;
+    }
+    
+    body {
+      overflow-x: hidden;
+      scroll-behavior: smooth;
     }
 
-    @keyframes float {
-      0% { transform: translateY(0) translateX(0); opacity: 1; }
-      50% { transform: translateY(-300px) translateX(50px); opacity: 0.5; }
-      100% { transform: translateY(-600px) translateX(0); opacity: 0; }
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #1a1a1a;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      border-radius: 4px;
+    }
+
+    /* Gradient text */
+    .gradient-text {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Animated background */
+    .animated-bg {
+      background: linear-gradient(-45deg, #0f0f23, #1a1a2e, #16213e, #0f3460);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Floating elements */
+    .floating {
+      animation: floating 6s ease-in-out infinite;
+    }
+
+    @keyframes floating {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* Glowing border */
+    .glow-border {
+      position: relative;
+      border: 2px solid transparent;
+      background: linear-gradient(45deg, #667eea, #764ba2) border-box;
+      -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: destination-out;
+      mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+    }
+
+    /* Advanced typing effect */
+    .typing-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .typing-text {
+      border-right: 3px solid #667eea;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 50% { border-color: #667eea; }
+      51%, 100% { border-color: transparent; }
+    }
+
+    /* Enhanced skill bars */
+    .skill-bar {
+      height: 12px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .skill-progress {
+      height: 100%;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      border-radius: 6px;
+      transition: width 2s ease-in-out;
+      position: relative;
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+    }
+
+    .skill-progress::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    /* Advanced card hover effects */
+    .card-hover {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transform-style: preserve-3d;
+      position: relative;
+    }
+
+    .card-hover::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: inherit;
+    }
+
+    .card-hover:hover::before {
+      opacity: 1;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-15px) rotateX(10deg) rotateY(5deg);
+      box-shadow: 0 25px 50px rgba(102, 126, 234, 0.4);
+    }
+
+    /* Particle system container */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    /* Navigation enhancements */
+    .nav-link {
+      position: relative;
+      transition: all 0.3s ease;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+    }
+
+    .nav-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: inherit;
+    }
+
+    .nav-link:hover::before {
+      opacity: 1;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-link:hover::after {
+      width: 80%;
+    }
+
+    /* Section divider with animation */
+    .section-divider {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #667eea, #764ba2, transparent);
+      margin: 4rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-divider::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+      animation: dividerShine 3s infinite;
+    }
+
+    @keyframes dividerShine {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    /* Enhanced button animations */
+    .btn-primary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 15px 35px rgba(102, 126, 234, 0.5);
+    }
+
+    .btn-primary:active {
+      transform: translateY(-1px) scale(1.02);
+    }
+
+    /* Parallax effect */
+    .parallax {
+      transform-style: preserve-3d;
+    }
+
+    /* Loading animation */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, #0f0f23, #1a1a2e);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+
+    .loading-spinner {
+      width: 60px;
+      height: 60px;
+      border: 3px solid rgba(102, 126, 234, 0.3);
+      border-top: 3px solid #667eea;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Cursor trail effect */
+    .cursor-trail {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, rgba(102, 126, 234, 0.8), transparent);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transition: transform 0.1s ease;
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.5rem !important;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.25rem !important;
+      }
+
+      .card-hover:hover {
+        transform: translateY(-10px);
+      }
+    }
+
+    /* Dark mode toggle */
+    .theme-toggle {
+      position: fixed;
+      top: 50%;
+      right: 2rem;
+      transform: translateY(-50%);
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50px;
+      padding: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    /* Progress indicator */
+    .progress-indicator {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      z-index: 9999;
+      transition: width 0.3s ease;
+    }
+
+    /* Interactive elements */
+    .interactive-element {
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .interactive-element:hover {
+      transform: scale(1.05);
+    }
+
+    /* Glassmorphism effect */
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Text reveal animation */
+    .text-reveal {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .text-reveal::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, #667eea, transparent);
+      transform: translateX(-100%);
+      animation: textReveal 2s ease-in-out;
+    }
+
+    @keyframes textReveal {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
     }
   </style>
 </head>
-<body class="bg-gradient-to-br from-black via-gray-900 to-gray-800 text-gray-200 min-h-screen flex items-center justify-center">
 
-  <!-- Floating particles -->
-  <script>
-    for(let i=0;i<30;i++){
-      const particle = document.createElement('div');
-      particle.className = 'particle';
-      const size = Math.random()*6+2;
-      particle.style.width = size+'px';
-      particle.style.height = size+'px';
-      particle.style.left = Math.random()*100+'vw';
-      particle.style.top = Math.random()*100+'vh';
-      particle.style.animationDuration = (Math.random()*5+5)+'s';
-      document.body.appendChild(particle);
-    }
-  </script>
-
-  <div class="w-full h-full flex items-center justify-center">
-    <div class="max-w-4xl mx-auto p-8 text-center bg-black/40 backdrop-blur-xl rounded-2xl neon-container border border-gray-700/40">
-
-      <!-- Profile Picture -->
-      <div class="mx-auto w-48 h-48 rounded-full border-2 border-gray-700 shadow-lg overflow-hidden hover:scale-105 transition duration-300">
-        <img src="photo_2025-08-17_03-23-58.jpg" alt="Fahad Photo" class="w-full h-full object-cover">
-      </div>
-
-      <!-- Name and Title -->
-      <h1 class="text-5xl font-extrabold mt-6 text-gray-300 tracking-wide">Fahad Al-Amoudi</h1>
-      <p id="dynamic-title" class="text-2xl font-semibold text-gray-400 mt-2 typing glow-text"></p>
-
-      <!-- About Section -->
-      <p class="mt-6 text-justify leading-relaxed text-gray-300 text-lg">
-        Data Science specialist focused on Artificial Intelligence, with strong expertise in data analysis, data visualization, and business intelligence. Skilled in Excel, Python, and Power BI for collecting, cleaning, and transforming data into actionable insights. Experienced in developing interactive dashboards, performing advanced statistical analysis, and designing surveys that translate into impactful visual reports for strategic decision-making. Committed to continuous learning, delivering accurate, high-quality results, and driving data-driven decisions in professional environments.
-      </p>
-
-      <!-- Download CV Button -->
-      <a href="CV.pdf" download 
-         class="mt-8 inline-block bg-gray-700 text-white px-8 py-3 rounded-full shadow-lg hover:bg-gray-800 hover:scale-110 hover:shadow-gray-500/70 transition duration-300 font-bold tracking-wide">
-         Download CV
-      </a>
-
-      <!-- Social Links -->
-      <div class="flex justify-center gap-8 mt-8">
-        <a href="https://github.com/Fahad-Data" target="_blank" class="hover:scale-125 transition duration-300">
-          <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" class="w-9 h-9 glow-text" alt="GitHub">
-        </a>
-        <a href="https://www.linkedin.com/in/fahad-alamoudi-7a9b5b286/" target="_blank" class="hover:scale-125 transition duration-300">
-          <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" class="w-9 h-9 glow-text" alt="LinkedIn">
-        </a>
-        <a href="https://x.com/imnxf" target="_blank" class="hover:scale-125 transition duration-300">
-          <img src="https://cdn-icons-png.flaticon.com/512/5968/5968830.png" class="w-9 h-9 glow-text" alt="X">
-        </a>
-      </div>
-
-      <!-- Contact Button -->
-      <div class="mt-12 flex justify-center">
-        <a href="mailto:f.alamoudi03@outlook.sa?subject=Contact%20from%20Portfolio&body=Hello%2C%20I%20would%20like%20to%20get%20in%20touch." 
-           class="bg-gray-700 text-white px-6 py-3 rounded-full shadow-lg hover:bg-gray-800 hover:scale-110 hover:shadow-gray-500/70 transition duration-300 font-bold">
-           Contact via Email
-        </a>
-      </div>
+<body class="animated-bg text-white min-h-screen">
+  <!-- Loading Screen -->
+  <div id="loading-overlay" class="loading-overlay">
+    <div class="text-center">
+      <div class="loading-spinner mx-auto mb-4"></div>
+      <p class="text-xl gradient-text">جاري التحميل...</p>
     </div>
   </div>
 
-  <!-- Typing Animation Script -->
+  <!-- Progress Indicator -->
+  <div id="progress-indicator" class="progress-indicator"></div>
+
+  <!-- Cursor Trail -->
+  <div id="cursor-trail" class="cursor-trail"></div>
+
+  <!-- Particles Background -->
+  <div id="particles-js"></div>
+
+  <!-- Theme Toggle -->
+  <div class="theme-toggle interactive-element" id="theme-toggle">
+    <i class="fas fa-palette text-xl text-purple-300"></i>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full glass z-50 border-b border-white/10" data-aos="fade-down">
+    <div class="container mx-auto px-6 py-4">
+      <div class="flex justify-between items-center">
+        <div class="text-2xl font-bold gradient-text interactive-element">فهد العمودي</div>
+        <div class="hidden md:flex space-x-8 space-x-reverse">
+          <a href="#home" class="nav-link hover:text-purple-300">الرئيسية</a>
+          <a href="#about" class="nav-link hover:text-purple-300">نبذة</a>
+          <a href="#skills" class="nav-link hover:text-purple-300">المهارات</a>
+          <a href="#projects" class="nav-link hover:text-purple-300">المشاريع</a>
+          <a href="#contact" class="nav-link hover:text-purple-300">التواصل</a>
+        </div>
+        <button id="mobile-menu-btn" class="md:hidden text-2xl interactive-element">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="fixed inset-0 glass z-40 hidden">
+    <div class="flex flex-col items-center justify-center h-full space-y-8 text-2xl">
+      <a href="#home" class="mobile-menu-link hover:text-purple-300 interactive-element">الرئيسية</a>
+      <a href="#about" class="mobile-menu-link hover:text-purple-300 interactive-element">نبذة</a>
+      <a href="#skills" class="mobile-menu-link hover:text-purple-300 interactive-element">المهارات</a>
+      <a href="#projects" class="mobile-menu-link hover:text-purple-300 interactive-element">المشاريع</a>
+      <a href="#contact" class="mobile-menu-link hover:text-purple-300 interactive-element">التواصل</a>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section id="home" class="min-h-screen flex items-center justify-center relative pt-20 parallax">
+    <div class="container mx-auto px-6 text-center relative z-10">
+      <div class="floating" data-aos="zoom-in" data-aos-duration="1000">
+        <div class="w-64 h-64 mx-auto rounded-full glow-border overflow-hidden mb-8 relative interactive-element">
+          <img src="photo_2025-08-17_03-23-58.jpg" alt="فهد العمودي" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-purple-900/50 to-transparent"></div>
+        </div>
+      </div>
+      
+      <h1 class="hero-title text-6xl font-black mb-4 gradient-text text-reveal" data-aos="fade-up" data-aos-delay="200">
+        فهد العمودي
+      </h1>
+      
+      <div class="typing-container mb-8" data-aos="fade-up" data-aos-delay="400">
+        <p id="dynamic-title" class="hero-subtitle text-2xl font-semibold text-purple-300 typing-text"></p>
+      </div>
+      
+      <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-12" data-aos="fade-up" data-aos-delay="600">
+        متخصص في علم البيانات والذكاء الاصطناعي، أحول البيانات إلى رؤى قابلة للتنفيذ
+        باستخدام أحدث التقنيات والأدوات المتطورة
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-6 justify-center items-center" data-aos="fade-up" data-aos-delay="800">
+        <a href="#contact" class="btn-primary px-8 py-4 rounded-full text-lg font-semibold interactive-element">
+          <i class="fas fa-envelope ml-2"></i>
+          تواصل معي
+        </a>
+        <a href="CV.pdf" download class="border-2 border-purple-400 px-8 py-4 rounded-full text-lg font-semibold hover:bg-purple-400 hover:text-black transition-all duration-300 interactive-element">
+          <i class="fas fa-download ml-2"></i>
+          تحميل السيرة الذاتية
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-20 relative">
+    <div class="section-divider"></div>
+    <div class="container mx-auto px-6">
+      <h2 class="text-5xl font-bold text-center mb-16 gradient-text" data-aos="fade-up">
+        نبذة عني
+      </h2>
+      
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div data-aos="fade-right">
+          <div class="card-hover glass rounded-2xl p-8 border border-white/10">
+            <h3 class="text-3xl font-bold mb-6 text-purple-300">رحلتي في علم البيانات</h3>
+            <p class="text-lg leading-relaxed text-gray-300 mb-6">
+              متخصص في علم البيانات مع خبرة قوية في الذكاء الاصطناعي وتحليل البيانات والتصور البياني وذكاء الأعمال. 
+              أتقن استخدام Excel وPython وPower BI لجمع البيانات وتنظيفها وتحويلها إلى رؤى قابلة للتنفيذ.
+            </p>
+            <p class="text-lg leading-relaxed text-gray-300">
+              لدي خبرة في تطوير لوحات المعلومات التفاعلية وإجراء التحليل الإحصائي المتقدم وتصميم الاستطلاعات 
+              التي تترجم إلى تقارير بصرية مؤثرة لاتخاذ القرارات الاستراتيجية.
+            </p>
+          </div>
+        </div>
+        
+        <div data-aos="fade-left">
+          <div class="grid grid-cols-2 gap-6">
+            <div class="card-hover glass p-6 rounded-xl border border-purple-400/30 text-center interactive-element">
+              <i class="fas fa-chart-line text-4xl text-purple-400 mb-4"></i>
+              <h4 class="text-xl font-bold mb-2">تحليل البيانات</h4>
+              <p class="text-gray-300">تحويل البيانات الخام إلى رؤى قيمة</p>
+            </div>
+            
+            <div class="card-hover glass p-6 rounded-xl border border-blue-400/30 text-center interactive-element">
+              <i class="fas fa-robot text-4xl text-blue-400 mb-4"></i>
+              <h4 class="text-xl font-bold mb-2">الذكاء الاصطناعي</h4>
+              <p class="text-gray-300">تطوير نماذج ذكية متقدمة</p>
+            </div>
+            
+            <div class="card-hover glass p-6 rounded-xl border border-green-400/30 text-center interactive-element">
+              <i class="fas fa-chart-pie text-4xl text-green-400 mb-4"></i>
+              <h4 class="text-xl font-bold mb-2">التصور البياني</h4>
+              <p class="text-gray-300">إنشاء تصورات بيانية مؤثرة</p>
+            </div>
+            
+            <div class="card-hover glass p-6 rounded-xl border border-yellow-400/30 text-center interactive-element">
+              <i class="fas fa-lightbulb text-4xl text-yellow-400 mb-4"></i>
+              <h4 class="text-xl font-bold mb-2">ذكاء الأعمال</h4>
+              <p class="text-gray-300">دعم القرارات الاستراتيجية</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="py-20 relative">
+    <div class="section-divider"></div>
+    <div class="container mx-auto px-6">
+      <h2 class="text-5xl font-bold text-center mb-16 gradient-text" data-aos="fade-up">
+        المهارات التقنية
+      </h2>
+      
+      <div class="grid md:grid-cols-2 gap-12">
+        <div data-aos="fade-right">
+          <h3 class="text-3xl font-bold mb-8 text-purple-300">لغات البرمجة والأدوات</h3>
+          
+          <div class="space-y-6">
+            <div class="skill-item">
+              <div class="flex justify-between mb-3">
+                <span class="text-lg font-semibold flex items-center">
+                  <i class="fab fa-python text-purple-400 ml-2"></i>
+                  Python
+                </span>
+                <span class="text-purple-300 font-bold">95%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="95"></div>
+              </div>
+            </div>
+            
+            <div class="skill-item">
+              <div class="flex justify-between mb-3">
+                <span class="text-lg font-semibold flex items-center">
+                  <i class="fas fa-chart-bar text-blue-400 ml-2"></i>
+                  Power BI
+                </span>
+                <span class="text-purple-300 font-bold">90%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="90"></div>
+              </div>
+            </div>
+            
+            <div class="skill-item">
+              <div class="flex justify-between mb-3">
+                <span class="text-lg font-semibold flex items-center">
+                  <i class="fas fa-file-excel text-green-400 ml-2"></i>
+                  Excel
+                </span>
+                <span class="text-purple-300 font-bold">88%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="88"></div>
+              </div>
+            </div>
+            
+            <div class="skill-item">
+              <div class="flex justify-between mb-3">
+                <span class="text-lg font-semibold flex items-center">
+                  <i class="fas fa-database text-yellow-400 ml-2"></i>
+                  SQL
+                </span>
+                <span class="text-purple-300 font-bold">60%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="60"></div>
+              </div>
+            </div>
+            
+            <div class="skill-item">
+              <div class="flex justify-between mb-3">
+                <span class="text-lg font-semibold flex items-center">
+                  <i class="fab fa-html5 text-orange-400 ml-2"></i>
+                  HTML
+                </span>
+                <span class="text-purple-300 font-bold">80%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="80"></div>
+              </div>
+            </div>
+            
+            <div class="skill-item">
+              <div class="flex justify-between mb-3">
+                <span class="text-lg font-semibold flex items-center">
+                  <i class="fab fa-css3-alt text-blue-400 ml-2"></i>
+                  CSS
+                </span>
+                <span class="text-purple-300 font-bold">80%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="80"></div>
+              </div>
+            </div>
+            
+            <div class="skill-item">
+              <div class="flex justify-between mb-3">
+                <span class="text-lg font-semibold flex items-center">
+                  <i class="fab fa-js-square text-yellow-400 ml-2"></i>
+                  JavaScript
+                </span>
+                <span class="text-purple-300 font-bold">80%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="80"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div data-aos="fade-left">
+          <h3 class="text-3xl font-bold mb-8 text-purple-300">التخصصات</h3>
+          
+          <div class="space-y-6">
+            <div class="skill-item">
+              <div class="flex justify-between mb-3">
+                <span class="text-lg font-semibold flex items-center">
+                  <i class="fas fa-flask text-purple-400 ml-2"></i>
+                  علم البيانات
+                </span>
+                <span class="text-purple-300 font-bold">95%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="95"></div>
+              </div>
+            </div>
+            
+            <div class="skill-item">
+              <div class="flex justify-between mb-3">
+                <span class="text-lg font-semibold flex items-center">
+                  <i class="fas fa-robot text-blue-400 ml-2"></i>
+                  الذكاء الاصطناعي
+                </span>
+                <span class="text-purple-300 font-bold">75%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="75"></div>
+              </div>
+            </div>
+            
+            <div class="skill-item">
+              <div class="flex justify-between mb-3">
+                <span class="text-lg font-semibold flex items-center">
+                  <i class="fas fa-analytics text-green-400 ml-2"></i>
+                  تحليل البيانات
+                </span>
+                <span class="text-purple-300 font-bold">100%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="100"></div>
+              </div>
+            </div>
+            
+            <div class="skill-item">
+              <div class="flex justify-between mb-3">
+                <span class="text-lg font-semibold flex items-center">
+                  <i class="fas fa-chart-line text-yellow-400 ml-2"></i>
+                  Power مطور
+                </span>
+                <span class="text-purple-300 font-bold">90%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="90"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="py-20 relative">
+    <div class="section-divider"></div>
+    <div class="container mx-auto px-6">
+      <h2 class="text-5xl font-bold text-center mb-16 gradient-text" data-aos="fade-up">
+        المشاريع المميزة
+      </h2>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="card-hover glass rounded-2xl p-6 border border-white/10 interactive-element" data-aos="fade-up" data-aos-delay="100">
+          <div class="bg-gradient-to-br from-purple-600 to-blue-600 w-full h-48 rounded-lg mb-6 flex items-center justify-center relative overflow-hidden">
+            <i class="fas fa-file-alt text-6xl text-white z-10"></i>
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full animate-pulse"></div>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-purple-300">Saudi Article Summarizer</h3>
+          <p class="text-gray-300 mb-6">
+            مشروع لتلخيص المقالات السعودية باستخدام تقنيات معالجة اللغة الطبيعية.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="bg-purple-600/30 px-3 py-1 rounded-full text-sm">Python</span>
+            <span class="bg-blue-600/30 px-3 py-1 rounded-full text-sm">NLP</span>
+            <span class="bg-green-600/30 px-3 py-1 rounded-full text-sm">Machine Learning</span>
+          </div>
+          <a href="https://github.com/Fahad-Data/saudi-article-summarizer" target="_blank" class="w-full btn-primary py-3 rounded-lg font-semibold">
+            <i class="fas fa-external-link-alt ml-2"></i>
+            عرض المشروع
+          </a>
+        </div>
+        
+        <div class="card-hover glass rounded-2xl p-6 border border-white/10 interactive-element" data-aos="fade-up" data-aos-delay="200">
+          <div class="bg-gradient-to-br from-green-600 to-yellow-600 w-full h-48 rounded-lg mb-6 flex items-center justify-center relative overflow-hidden">
+            <i class="fas fa-image text-6xl text-white z-10"></i>
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full animate-pulse"></div>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-purple-300">AI Image Classifier</h3>
+          <p class="text-gray-300 mb-6">
+            تصنيف الصور باستخدام الذكاء الاصطناعي، مشروع يوضح قدرات التعلم العميق في رؤية الكمبيوتر.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="bg-purple-600/30 px-3 py-1 rounded-full text-sm">Python</span>
+            <span class="bg-blue-600/30 px-3 py-1 rounded-full text-sm">Deep Learning</span>
+            <span class="bg-green-600/30 px-3 py-1 rounded-full text-sm">TensorFlow</span>
+          </div>
+          <a href="https://github.com/Fahad-Data/ai-image-classifier" target="_blank" class="w-full btn-primary py-3 rounded-lg font-semibold">
+            <i class="fas fa-external-link-alt ml-2"></i>
+            عرض المشروع
+          </a>
+        </div>
+        
+        <div class="card-hover glass rounded-2xl p-6 border border-white/10 interactive-element" data-aos="fade-up" data-aos-delay="300">
+          <div class="bg-gradient-to-br from-red-600 to-pink-600 w-full h-48 rounded-lg mb-6 flex items-center justify-center relative overflow-hidden">
+            <i class="fas fa-trophy text-6xl text-white z-10"></i>
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full animate-pulse"></div>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-purple-300">Data Drip Hackathon</h3>
+          <p class="text-gray-300 mb-6">
+            مشروع هاكاثون Data Drip، يركز على حلول البيانات المبتكرة.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="bg-purple-600/30 px-3 py-1 rounded-full text-sm">Data Analysis</span>
+            <span class="bg-blue-600/30 px-3 py-1 rounded-full text-sm">Problem Solving</span>
+            <span class="bg-green-600/30 px-3 py-1 rounded-full text-sm">Teamwork</span>
+          </div>
+          <a href="https://github.com/Fahad-Data/Data-Drip-Hackathon" target="_blank" class="w-full btn-primary py-3 rounded-lg font-semibold">
+            <i class="fas fa-external-link-alt ml-2"></i>
+            عرض المشروع
+          </a>
+        </div>
+
+        <div class="card-hover glass rounded-2xl p-6 border border-white/10 interactive-element" data-aos="fade-up" data-aos-delay="400">
+          <div class="bg-gradient-to-br from-blue-600 to-purple-600 w-full h-48 rounded-lg mb-6 flex items-center justify-center relative overflow-hidden">
+            <i class="fas fa-code text-6xl text-white z-10"></i>
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full animate-pulse"></div>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-purple-300">Data Jam Hackathon</h3>
+          <p class="text-gray-300 mb-6">
+            مشروع هاكاثون Data Jam، يبرز مهارات البرمجة وتحليل البيانات.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="bg-purple-600/30 px-3 py-1 rounded-full text-sm">Python</span>
+            <span class="bg-blue-600/30 px-3 py-1 rounded-full text-sm">Data Science</span>
+            <span class="bg-green-600/30 px-3 py-1 rounded-full text-sm">Hackathon</span>
+          </div>
+          <a href="https://github.com/Fahad-Data/Data-Jam-hackthon" target="_blank" class="w-full btn-primary py-3 rounded-lg font-semibold">
+            <i class="fas fa-external-link-alt ml-2"></i>
+            عرض المشروع
+          </a>
+        </div>
+
+        <div class="card-hover glass rounded-2xl p-6 border border-white/10 interactive-element" data-aos="fade-up" data-aos-delay="500">
+          <div class="bg-gradient-to-br from-yellow-600 to-green-600 w-full h-48 rounded-lg mb-6 flex items-center justify-center relative overflow-hidden">
+            <i class="fas fa-sheep text-6xl text-white z-10"></i>
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full animate-pulse"></div>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-purple-300">Eid Al-Adha 2025 Sheep Classification Challenge</h3>
+          <p class="text-gray-300 mb-6">
+            تحدي تصنيف الأغنام لعيد الأضحى 2025، باستخدام تقنيات التعلم الآلي لتصنيف الصور.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="bg-purple-600/30 px-3 py-1 rounded-full text-sm">Machine Learning</span>
+            <span class="bg-blue-600/30 px-3 py-1 rounded-full text-sm">Image Classification</span>
+            <span class="bg-green-600/30 px-3 py-1 rounded-full text-sm">Computer Vision</span>
+          </div>
+          <a href="https://github.com/Fahad-Data/Eid-Al-Adha-2025-Sheep-Classification-Challenge" target="_blank" class="w-full btn-primary py-3 rounded-lg font-semibold">
+            <i class="fas fa-external-link-alt ml-2"></i>
+            عرض المشروع
+          </a>
+        </div>
+
+        <div class="card-hover glass rounded-2xl p-6 border border-white/10 interactive-element" data-aos="fade-up" data-aos-delay="600">
+          <div class="bg-gradient-to-br from-pink-600 to-red-600 w-full h-48 rounded-lg mb-6 flex items-center justify-center relative overflow-hidden">
+            <i class="fas fa-graduation-cap text-6xl text-white z-10"></i>
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full animate-pulse"></div>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-purple-300">AI Bootcamp</h3>
+          <p class="text-gray-300 mb-6">
+            مشاريع من معسكر تدريب الذكاء الاصطناعي، تغطي أساسيات وتطبيقات الذكاء الاصطناعي.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="bg-purple-600/30 px-3 py-1 rounded-full text-sm">AI Fundamentals</span>
+            <span class="bg-blue-600/30 px-3 py-1 rounded-full text-sm">Practical AI</span>
+            <span class="bg-green-600/30 px-3 py-1 rounded-full text-sm">Bootcamp Projects</span>
+          </div>
+          <a href="https://github.com/Fahad-Data/AI-Bootcamp" target="_blank" class="w-full btn-primary py-3 rounded-lg font-semibold">
+            <i class="fas fa-external-link-alt ml-2"></i>
+            عرض المشروع
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 relative">
+    <div class="section-divider"></div>
+    <div class="container mx-auto px-6">
+      <h2 class="text-5xl font-bold text-center mb-16 gradient-text" data-aos="fade-up">
+        تواصل معي
+      </h2>
+      
+      <div class="max-w-4xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-12">
+          <div data-aos="fade-right">
+            <h3 class="text-3xl font-bold mb-8 text-purple-300">لنتعاون معاً</h3>
+            <p class="text-lg text-gray-300 mb-8 leading-relaxed">
+              هل لديك مشروع في علم البيانات أو تحتاج إلى استشارة في الذكاء الاصطناعي؟ 
+              أنا هنا لمساعدتك في تحويل بياناتك إلى قيمة حقيقية.
+            </p>
+            
+            <div class="space-y-6">
+              <div class="flex items-center space-x-4 space-x-reverse interactive-element">
+                <div class="w-12 h-12 bg-gradient-to-br from-purple-600 to-blue-600 rounded-full flex items-center justify-center">
+                  <i class="fas fa-envelope text-white"></i>
+                </div>
+                <div>
+                  <h4 class="text-lg font-semibold">البريد الإلكتروني</h4>
+                  <p class="text-gray-300">f.alamoudi03@outlook.sa</p>
+                </div>
+              </div>
+              
+              <div class="flex items-center space-x-4 space-x-reverse interactive-element">
+                <div class="w-12 h-12 bg-gradient-to-br from-blue-600 to-green-600 rounded-full flex items-center justify-center">
+                  <i class="fab fa-linkedin text-white"></i>
+                </div>
+                <div>
+                  <h4 class="text-lg font-semibold">لينكد إن</h4>
+                  <p class="text-gray-300"><a href="https://www.linkedin.com/in/fahad-alamoudi-7a9b5b286/" target="_blank">fahad-alamoudi</a></p>
+                </div>
+              </div>
+              
+              <div class="flex items-center space-x-4 space-x-reverse interactive-element">
+                <div class="w-12 h-12 bg-gradient-to-br from-gray-600 to-black rounded-full flex items-center justify-center">
+                  <i class="fab fa-github text-white"></i>
+                </div>
+                <div>
+                  <h4 class="text-lg font-semibold">جيت هاب</h4>
+                  <p class="text-gray-300"><a href="https://github.com/Fahad-Data" target="_blank">Fahad-Data</a></p>
+                </div>
+              </div>
+              
+              <div class="flex items-center space-x-4 space-x-reverse interactive-element">
+                <div class="w-12 h-12 bg-gradient-to-br from-gray-800 to-black rounded-full flex items-center justify-center">
+                  <i class="fab fa-x-twitter text-white"></i>
+                </div>
+                <div>
+                  <h4 class="text-lg font-semibold">تويتر (X)</h4>
+                  <p class="text-gray-300"><a href="https://x.com/imnxf" target="_blank">imnxf</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div data-aos="fade-left">
+            <div class="card-hover glass rounded-2xl p-8 border border-white/10">
+              <form id="contact-form" class="space-y-6">
+                <div>
+                  <label class="block text-lg font-semibold mb-2">الاسم</label>
+                  <input type="text" required class="w-full glass border border-white/20 rounded-lg px-4 py-3 focus:outline-none focus:border-purple-400 transition-colors">
+                </div>
+                
+                <div>
+                  <label class="block text-lg font-semibold mb-2">البريد الإلكتروني</label>
+                  <input type="email" required class="w-full glass border border-white/20 rounded-lg px-4 py-3 focus:outline-none focus:border-purple-400 transition-colors">
+                </div>
+                
+                <div>
+                  <label class="block text-lg font-semibold mb-2">الموضوع</label>
+                  <input type="text" required class="w-full glass border border-white/20 rounded-lg px-4 py-3 focus:outline-none focus:border-purple-400 transition-colors">
+                </div>
+                
+                <div>
+                  <label class="block text-lg font-semibold mb-2">الرسالة</label>
+                  <textarea rows="5" required class="w-full glass border border-white/20 rounded-lg px-4 py-3 focus:outline-none focus:border-purple-400 transition-colors resize-none"></textarea>
+                </div>
+                
+                <button type="submit" class="w-full btn-primary py-4 rounded-lg text-lg font-semibold">
+                  <i class="fas fa-paper-plane ml-2"></i>
+                  إرسال الرسالة
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Links -->
+  <section class="py-12 border-t border-white/10">
+    <div class="container mx-auto px-6">
+      <div class="flex justify-center space-x-8 space-x-reverse" data-aos="fade-up">
+        <a href="https://github.com/Fahad-Data" target="_blank" class="w-16 h-16 glass rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300 interactive-element">
+          <i class="fab fa-github text-2xl text-white"></i>
+        </a>
+        
+        <a href="https://www.linkedin.com/in/fahad-alamoudi-7a9b5b286/" target="_blank" class="w-16 h-16 glass rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300 interactive-element">
+          <i class="fab fa-linkedin text-2xl text-blue-400"></i>
+        </a>
+        
+        <a href="https://x.com/imnxf" target="_blank" class="w-16 h-16 glass rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300 interactive-element">
+          <i class="fab fa-x-twitter text-2xl text-white"></i>
+        </a>
+        
+        <a href="mailto:f.alamoudi03@outlook.sa" class="w-16 h-16 glass rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300 interactive-element">
+          <i class="fas fa-envelope text-2xl text-purple-400"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 text-center border-t border-white/10">
+    <div class="container mx-auto px-6">
+      <p class="text-gray-400">
+        © 2025 فهد العمودي. جميع الحقوق محفوظة.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
   <script>
-    const titles = ["Data Science Specialist", "Data Analyst", "Power BI Developer"];
-    let i = 0;
-    const typingEl = document.getElementById("dynamic-title");
-
-    function typeWriter(text, idx = 0) {
-      if (idx < text.length) {
-        typingEl.textContent += text.charAt(idx);
-        setTimeout(() => typeWriter(text, idx + 1), 120);
-      } else {
+    // Loading screen
+    window.addEventListener('load', () => {
+      const loadingOverlay = document.getElementById('loading-overlay');
+      setTimeout(() => {
+        loadingOverlay.style.opacity = '0';
         setTimeout(() => {
-          eraseText(text);
-        }, 2000);
-      }
-    }
+          loadingOverlay.style.display = 'none';
+        }, 500);
+      }, 1500);
+    });
 
-    function eraseText(text) {
-      let idx = text.length;
-      function erase() {
-        if (idx > 0) {
-          typingEl.textContent = text.substring(0, idx - 1);
-          idx--;
-          setTimeout(erase, 50);
-        } else {
-          i = (i + 1) % titles.length;
-          typeWriter(titles[i]);
+    // Initialize AOS
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100
+    });
+
+    // Particles.js configuration
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 80, density: { enable: true, value_area: 800 } },
+        color: { value: '#667eea' },
+        shape: { type: 'circle' },
+        opacity: { value: 0.5, random: false },
+        size: { value: 3, random: true },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: '#667eea',
+          opacity: 0.4,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 2,
+          direction: 'none',
+          random: false,
+          straight: false,
+          out_mode: 'out',
+          bounce: false
+        }
+      },
+      interactivity: {
+        detect_on: 'canvas',
+        events: {
+          onhover: { enable: true, mode: 'repulse' },
+          onclick: { enable: true, mode: 'push' },
+          resize: true
+        },
+        modes: {
+          grab: { distance: 400, line_linked: { opacity: 1 } },
+          bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 },
+          repulse: { distance: 200, duration: 0.4 },
+          push: { particles_nb: 4 },
+          remove: { particles_nb: 2 }
+        }
+      },
+      retina_detect: true
+    });
+
+    // Enhanced typing animation
+    const titles = [
+      "متخصص علم البيانات",
+      "محلل البيانات",
+      "مطور Power BI",
+      "خبير الذكاء الاصطناعي",
+      "مستشار تحليل البيانات"
+    ];
+    
+    let titleIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typingElement = document.getElementById('dynamic-title');
+    
+    function typeWriter() {
+      const currentTitle = titles[titleIndex];
+      
+      if (isDeleting) {
+        typingElement.textContent = currentTitle.substring(0, charIndex - 1);
+        charIndex--;
+      } else {
+        typingElement.textContent = currentTitle.substring(0, charIndex + 1);
+        charIndex++;
+      }
+      
+      let typeSpeed = isDeleting ? 50 : 100;
+      
+      if (!isDeleting && charIndex === currentTitle.length) {
+        typeSpeed = 2000;
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        titleIndex = (titleIndex + 1) % titles.length;
+        typeSpeed = 500;
+      }
+      
+      setTimeout(typeWriter, typeSpeed);
+    }
+    
+    typeWriter();
+
+    // Cursor trail effect
+    const cursorTrail = document.getElementById('cursor-trail');
+    let mouseX = 0, mouseY = 0;
+    let trailX = 0, trailY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function animateTrail() {
+      trailX += (mouseX - trailX) * 0.1;
+      trailY += (mouseY - trailY) * 0.1;
+      
+      cursorTrail.style.left = trailX - 10 + 'px';
+      cursorTrail.style.top = trailY - 10 + 'px';
+      
+      requestAnimationFrame(animateTrail);
+    }
+    
+    animateTrail();
+
+    // Progress indicator
+    const progressIndicator = document.getElementById('progress-indicator');
+    
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.pageYOffset;
+      const docHeight = document.body.offsetHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      progressIndicator.style.width = scrollPercent + '%';
+    });
+
+    // Enhanced skill bars animation
+    const observerOptions = {
+      threshold: 0.5,
+      rootMargin: '0px 0px -100px 0px'
+    };
+    
+    const skillObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const progressBars = entry.target.querySelectorAll('.skill-progress');
+          progressBars.forEach((bar, index) => {
+            const width = bar.getAttribute('data-width');
+            setTimeout(() => {
+              bar.style.width = width + '%';
+            }, index * 200);
+          });
+        }
+      });
+    }, observerOptions);
+    
+    document.querySelectorAll('#skills').forEach(section => {
+      skillObserver.observe(section);
+    });
+
+    // Mobile menu
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+    
+    // Close mobile menu when clicking on links
+    document.querySelectorAll('.mobile-menu-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Enhanced navbar background on scroll
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 100) {
+        nav.style.background = 'rgba(0, 0, 0, 0.8)';
+        nav.style.backdropFilter = 'blur(20px)';
+      } else {
+        nav.style.background = 'rgba(255, 255, 255, 0.05)';
+        nav.style.backdropFilter = 'blur(20px)';
+      }
+    });
+
+    // Theme toggle functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    let currentTheme = 0;
+    const themes = [
+      { primary: '#667eea', secondary: '#764ba2' },
+      { primary: '#ff6b6b', secondary: '#feca57' },
+      { primary: '#48dbfb', secondary: '#0abde3' },
+      { primary: '#1dd1a1', secondary: '#10ac84' }
+    ];
+
+    themeToggle.addEventListener('click', () => {
+      currentTheme = (currentTheme + 1) % themes.length;
+      const theme = themes[currentTheme];
+      
+      document.documentElement.style.setProperty('--primary-color', theme.primary);
+      document.documentElement.style.setProperty('--secondary-color', theme.secondary);
+      
+      // Update CSS custom properties
+      const style = document.createElement('style');
+      style.textContent = `
+        :root {
+          --primary: ${theme.primary};
+          --secondary: ${theme.secondary};
+        }
+        .gradient-text {
+          background: linear-gradient(135deg, ${theme.primary} 0%, ${theme.secondary} 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+        .btn-primary {
+          background: linear-gradient(135deg, ${theme.primary} 0%, ${theme.secondary} 100%);
+        }
+        .skill-progress {
+          background: linear-gradient(90deg, ${theme.primary}, ${theme.secondary});
+        }
+      `;
+      document.head.appendChild(style);
+    });
+
+    // Contact form handling
+    const contactForm = document.getElementById('contact-form');
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // Simulate form submission
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin ml-2"></i>جاري الإرسال...';
+      submitBtn.disabled = true;
+      
+      setTimeout(() => {
+        submitBtn.innerHTML = '<i class="fas fa-check ml-2"></i>تم الإرسال بنجاح!';
+        submitBtn.style.background = 'linear-gradient(135deg, #1dd1a1, #10ac84)';
+        
+        setTimeout(() => {
+          submitBtn.innerHTML = originalText;
+          submitBtn.disabled = false;
+          submitBtn.style.background = '';
+          contactForm.reset();
+        }, 2000);
+      }, 2000);
+    });
+
+    // Parallax effect
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const parallaxElements = document.querySelectorAll('.parallax');
+      
+      parallaxElements.forEach(element => {
+        const speed = 0.5;
+        element.style.transform = `translateY(${scrolled * speed}px)`;
+      });
+    });
+
+    // Interactive elements enhancement
+    document.querySelectorAll('.interactive-element').forEach(element => {
+      element.addEventListener('mouseenter', () => {
+        element.style.transform = 'scale(1.05)';
+      });
+      
+      element.addEventListener('mouseleave', () => {
+        element.style.transform = 'scale(1)';
+      });
+    });
+
+    // Add ripple effect to buttons
+    document.querySelectorAll('.btn-primary').forEach(button => {
+      button.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+        
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        ripple.classList.add('ripple');
+        
+        this.appendChild(ripple);
+        
+        setTimeout(() => {
+          ripple.remove();
+        }, 600);
+      });
+    });
+
+    // Add CSS for ripple effect
+    const rippleStyle = document.createElement('style');
+    rippleStyle.textContent = `
+      .btn-primary {
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .ripple {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: scale(0);
+        animation: ripple-animation 0.6s linear;
+        pointer-events: none;
+      }
+      
+      @keyframes ripple-animation {
+        to {
+          transform: scale(4);
+          opacity: 0;
         }
       }
-      erase();
-    }
-
-    typeWriter(titles[i]);
+    `;
+    document.head.appendChild(rippleStyle);
   </script>
 </body>
 </html>
+
